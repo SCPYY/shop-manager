@@ -6,9 +6,28 @@ const routes = [
         name : "home",
         path : "/",
         meta : {
-            name : "首页"
+            title : "首页"
         },
-        component : Home
+        redirect : "/welcome",
+        component : Home,
+        children : [
+            {
+                name : 'welcome',
+                path : '/welcome',
+                meta : {
+                    title : "欢迎页"
+                },
+                component : () => import('../views/Welcome.vue')
+            },
+            {
+                name : "users",
+                path : '/users',
+                meta : {
+                    title : "用户列表"
+                },
+                component : () => import('../views/Users.vue')
+            }
+        ]
     },
     {
         name : "login",
